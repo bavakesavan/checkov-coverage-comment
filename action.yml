@@ -76,5 +76,5 @@ outputs:
     description: 'URL of the posted or updated PR comment'
 
 runs:
-  using: 'node22'
+  using: 'node24'
   main: 'dist/index.js'

@@ -1,0 +1,32 @@
+name: Check dist/
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  check-dist:
+    name: Verify dist/ is up to date
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: HUSKY=0 npm ci
+
+      - name: Rebuild dist/
+        run: npm run build
+
+      - name: Fail if dist/ is out of sync
+        run: |
+          if ! git diff --exit-code dist/; then
+            echo ""
+            echo "dist/ is out of sync with src/. Run 'npm run build' and commit the result."
+            exit 1
+          fi
