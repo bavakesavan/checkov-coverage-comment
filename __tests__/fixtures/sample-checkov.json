@@ -1,0 +1,131 @@
+[
+  {
+    "check_type": "terraform",
+    "results": {
+      "passed_checks": [
+        {
+          "check_id": "CKV_AWS_20",
+          "check_name": "Ensure the S3 bucket has access control list (ACL) is private",
+          "severity": "HIGH",
+          "resource": "aws_s3_bucket.private_bucket",
+          "file_path": "/infra/s3.tf",
+          "file_abs_path": "/workspace/infra/s3.tf",
+          "repo_file_path": "/infra/s3.tf",
+          "file_line_range": [1, 10],
+          "check_result": { "result": "PASSED" }
+        }
+      ],
+      "failed_checks": [
+        {
+          "check_id": "CKV_AWS_18",
+          "check_name": "Ensure the S3 bucket has access logging enabled",
+          "severity": "CRITICAL",
+          "resource": "aws_s3_bucket.app_data",
+          "file_path": "/infra/s3.tf",
+          "file_abs_path": "/workspace/infra/s3.tf",
+          "repo_file_path": "/infra/s3.tf",
+          "file_line_range": [12, 30],
+          "check_result": { "result": "FAILED" }
+        },
+        {
+          "check_id": "CKV_AWS_21",
+          "check_name": "Ensure all data stored in the S3 bucket has versioning enabled",
+          "severity": "HIGH",
+          "resource": "aws_s3_bucket.app_data",
+          "file_path": "/infra/s3.tf",
+          "file_abs_path": "/workspace/infra/s3.tf",
+          "repo_file_path": "/infra/s3.tf",
+          "file_line_range": [12, 30],
+          "check_result": { "result": "FAILED" }
+        },
+        {
+          "check_id": "CKV_AWS_86",
+          "check_name": "Ensure S3 bucket has a lifecycle configuration",
+          "severity": "MEDIUM",
+          "resource": "aws_s3_bucket.logs",
+          "file_path": "/infra/s3.tf",
+          "file_abs_path": "/workspace/infra/s3.tf",
+          "repo_file_path": "/infra/s3.tf",
+          "file_line_range": [32, 45],
+          "check_result": { "result": "FAILED" }
+        },
+        {
+          "check_id": "CKV2_AWS_62",
+          "check_name": "Ensure S3 buckets should have event notifications enabled",
+          "severity": "LOW",
+          "resource": "aws_s3_bucket.archive",
+          "file_path": "/infra/s3.tf",
+          "file_abs_path": "/workspace/infra/s3.tf",
+          "repo_file_path": "/infra/s3.tf",
+          "file_line_range": [47, 60],
+          "check_result": { "result": "FAILED" }
+        },
+        {
+          "check_id": "CKV_CUSTOM_001",
+          "check_name": "Ensure that S3 buckets are encrypted with KMS by default",
+          "severity": null,
+          "resource": "aws_s3_bucket.misc",
+          "file_path": "/infra/s3.tf",
+          "file_abs_path": "/workspace/infra/s3.tf",
+          "repo_file_path": "/infra/s3.tf",
+          "file_line_range": [62, 75],
+          "check_result": { "result": "FAILED" }
+        }
+      ],
+      "skipped_checks": [
+        {
+          "check_id": "CKV_AWS_19",
+          "check_name": "Ensure all data stored in the S3 bucket is securely encrypted at rest",
+          "severity": "HIGH",
+          "resource": "aws_s3_bucket.legacy",
+          "file_path": "/infra/s3.tf",
+          "file_abs_path": "/workspace/infra/s3.tf",
+          "repo_file_path": "/infra/s3.tf",
+          "file_line_range": [77, 90],
+          "check_result": {
+            "result": "SKIPPED",
+            "suppress_comment": "Legacy bucket — tracked in INFRA-421"
+          }
+        }
+      ],
+      "parsing_errors": []
+    },
+    "summary": {
+      "passed": 1,
+      "failed": 5,
+      "skipped": 1,
+      "parsing_errors": 0,
+      "resource_count": 5,
+      "checkov_version": "3.2.0"
+    }
+  },
+  {
+    "check_type": "cloudformation",
+    "results": {
+      "passed_checks": [],
+      "failed_checks": [
+        {
+          "check_id": "CKV_AWS_111",
+          "check_name": "Ensure IAM policies does not allow write access without constraints",
+          "severity": "HIGH",
+          "resource": "AWS::IAM::Policy.AdminPolicy",
+          "file_path": "/cfn/iam.yml",
+          "file_abs_path": "/workspace/cfn/iam.yml",
+          "repo_file_path": "/cfn/iam.yml",
+          "file_line_range": [1, 20],
+          "check_result": { "result": "FAILED" }
+        }
+      ],
+      "skipped_checks": [],
+      "parsing_errors": []
+    },
+    "summary": {
+      "passed": 0,
+      "failed": 1,
+      "skipped": 0,
+      "parsing_errors": 0,
+      "resource_count": 1,
+      "checkov_version": "3.2.0"
+    }
+  }
+]

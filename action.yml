@@ -1,0 +1,80 @@
+name: 'Checkov Coverage Comment'
+description: 'Post Checkov IaC scan results as a PR comment, grouped by severity'
+author: 'bavakesavan'
+
+branding:
+  icon: 'shield'
+  color: 'red'
+
+inputs:
+  github-token:
+    description: 'GitHub token for posting PR comments'
+    required: true
+    default: ${{ github.token }}
+
+  checkov-output-path:
+    description: 'Path to the Checkov JSON output file (relative to GITHUB_WORKSPACE or absolute)'
+    required: false
+    default: 'results_json.json'
+
+  title:
+    description: 'Title for the PR comment heading'
+    required: false
+    default: 'Checkov Security Scan'
+
+  hide-passed:
+    description: 'Hide the passed check count from the comment footer'
+    required: false
+    default: 'false'
+
+  hide-skipped:
+    description: 'Hide the skipped check count from the comment footer'
+    required: false
+    default: 'false'
+
+  severities:
+    description: 'Comma-separated list of severity levels to include in the comment (CRITICAL,HIGH,MEDIUM,LOW,INFO)'
+    required: false
+    default: 'CRITICAL,HIGH,MEDIUM,LOW,INFO'
+
+  create-new-comment:
+    description: 'Always create a new comment instead of updating the existing one'
+    required: false
+    default: 'false'
+
+  soft-fail:
+    description: 'Exit with code 0 even when Checkov findings are present'
+    required: false
+    default: 'false'
+
+  issue-number:
+    description: 'PR/issue number to comment on (useful for workflow_dispatch triggers)'
+    required: false
+    default: ''
+
+  unique-id-for-comment:
+    description: 'Unique identifier for the comment watermark — allows multiple separate comments (e.g. in matrix builds)'
+    required: false
+    default: 'default'
+
+outputs:
+  critical:
+    description: 'Number of CRITICAL severity failed checks'
+  high:
+    description: 'Number of HIGH severity failed checks'
+  medium:
+    description: 'Number of MEDIUM severity failed checks'
+  low:
+    description: 'Number of LOW severity failed checks'
+  info:
+    description: 'Number of INFO severity failed checks'
+  total-failed:
+    description: 'Total number of failed checks'
+  total-passed:
+    description: 'Total number of passed checks'
+  comment-url:
+    description: 'URL of the posted or updated PR comment'
+
+runs:
+  using: 'node22'
+  main: 'dist/index.js'

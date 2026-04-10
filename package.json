@@ -1,0 +1,27 @@
+{
+  "name": "checkov-coverage-comment",
+  "version": "1.0.0",
+  "description": "GitHub Action to post Checkov scan results as a PR comment grouped by severity",
+  "main": "dist/index.js",
+  "author": "bavakesavan",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bavakesavan/checkov-coverage-comment"
+  },
+  "scripts": {
+    "build": "tsc && ncc build src/index.ts -o dist --minify --source-map --license licenses.txt",
+    "test": "vitest run",
+    "prepare": "npm run build"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@actions/core": "^1.10.1",
+    "@actions/github": "^6.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.19.17",
+    "@vercel/ncc": "^0.38.1",
+    "typescript": "^5.4.0",
+    "vitest": "^1.6.0"
+  }
+}
