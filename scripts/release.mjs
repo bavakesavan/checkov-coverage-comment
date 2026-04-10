@@ -158,7 +158,7 @@ console.log('Building dist/...');
 run('npm run build');
 
 // 9. Commit and tag
-run(`git add dist/ lib/ CHANGELOG.md package.json changelogs/`);
+run(`git add dist/ CHANGELOG.md package.json changelogs/`);
 run(`git commit -m "chore: release v${newVersion}"`);
 run(`git tag -a "v${newVersion}" -m "Release v${newVersion}"`);
 
