@@ -211,14 +211,14 @@ npm install        # installs dependencies and sets up Git hooks via Husky
 
 ### Development workflow
 
-| Command | What it does |
-|---------|--------------|
-| `npm run build` | Compiles TypeScript → `lib/`, then bundles everything into `dist/` via NCC |
-| `npm test` | Runs the Vitest test suite |
-| `npm run lint` | Runs ESLint over `src/` and `__tests__/` |
-| `npm run lint:fix` | Same as above but auto-fixes what it can |
-| `npm run format` | Reformats all files with Prettier |
-| `npm run format:check` | Checks formatting without writing (used in CI) |
+| Command                | What it does                                                               |
+| ---------------------- | -------------------------------------------------------------------------- |
+| `npm run build`        | Compiles TypeScript → `lib/`, then bundles everything into `dist/` via NCC |
+| `npm test`             | Runs the Vitest test suite                                                 |
+| `npm run lint`         | Runs ESLint over `src/` and `__tests__/`                                   |
+| `npm run lint:fix`     | Same as above but auto-fixes what it can                                   |
+| `npm run format`       | Reformats all files with Prettier                                          |
+| `npm run format:check` | Checks formatting without writing (used in CI)                             |
 
 The pre-commit hook (Husky + lint-staged) runs ESLint and Prettier automatically on staged `.ts` files before each commit. To skip it in an emergency: `HUSKY=0 git commit`.
 
@@ -269,15 +269,16 @@ changelogs/{short-description}.md
 type: minor
 scope: action
 ---
+
 Add support for SARIF output format alongside the existing JSON parser.
 ```
 
 **`type`** (required):
 
-| Value | When to use |
-|-------|-------------|
-| `patch` | Bug fixes, dependency updates, documentation |
-| `minor` | New features, new inputs/outputs |
+| Value   | When to use                                               |
+| ------- | --------------------------------------------------------- |
+| `patch` | Bug fixes, dependency updates, documentation              |
+| `minor` | New features, new inputs/outputs                          |
 | `major` | Breaking changes to existing inputs, outputs, or behavior |
 
 **`scope`** (optional): a short label for the area of the project (e.g. `runtime`, `ci`, `tooling`, `action`, `parser`). Shown in parentheses in the compiled changelog.
