@@ -175,4 +175,4 @@ console.log(`Released v${newVersion} successfully!`);
 console.log(`Tags created: v${newVersion}, ${majorTag}`);
 console.log('');
 console.log('Push with:');
-console.log(`  git push origin main "v${newVersion}" "${majorTag}" --force-with-lease`);
+console.log(`  git push origin main --force-with-lease && git push origin "v${newVersion}" "${majorTag}" --force`);

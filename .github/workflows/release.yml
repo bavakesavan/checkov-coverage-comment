@@ -1,4 +1,4 @@
-name: Release
+name: Release new version
 
 on:
   workflow_dispatch:
@@ -37,4 +37,5 @@ jobs:
         run: |
           VERSION=$(node -p "require('./package.json').version")
           MAJOR="v$(echo $VERSION | cut -d. -f1)"
-          git push origin main "v${VERSION}" "${MAJOR}" --force-with-lease
+          git push origin main --force-with-lease
+          git push origin "v${VERSION}" "${MAJOR}" --force
