@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.2.1] - 2026-04-14
+
+### Bug Fixes & Improvements
+
+- **ci:** Fix release workflow failing to push the floating major tag by splitting into separate push commands — `--force-with-lease` for the branch and `--force` for tags.
+
 ## [1.2.0] - 2026-04-10
 
 ### New Features

@@ -1,6 +1,6 @@
 {
   "name": "checkov-coverage-comment",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "GitHub Action to post Checkov scan results as a PR comment grouped by severity",
   "main": "dist/index.js",
   "author": "bavakesavan",
