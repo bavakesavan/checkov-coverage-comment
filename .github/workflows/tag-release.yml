@@ -1,0 +1,44 @@
+name: Tag release
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'package.json'
+
+permissions:
+  contents: write
+
+jobs:
+  tag:
+    name: Push version tags
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Read version from package.json
+        id: version
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          echo "version=${VERSION}" >> $GITHUB_OUTPUT
+          echo "major=v$(echo ${VERSION} | cut -d. -f1)" >> $GITHUB_OUTPUT
+          echo "exact=v${VERSION}" >> $GITHUB_OUTPUT
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Push exact version tag
+        run: |
+          git tag "${{ steps.version.outputs.exact }}"
+          git push origin "${{ steps.version.outputs.exact }}"
+
+      - name: Update floating major tag
+        run: |
+          git tag -fa "${{ steps.version.outputs.major }}" \
+            -m "Update ${{ steps.version.outputs.major }} to ${{ steps.version.outputs.exact }}"
+          git push origin "${{ steps.version.outputs.major }}" --force

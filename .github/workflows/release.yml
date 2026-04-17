@@ -5,16 +5,17 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
   release:
-    name: Build & Release
+    name: Build & Release PR
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
         with:
           fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.RELEASE_PAT }}
 
       - name: Set up Node.js
         uses: actions/setup-node@v6
@@ -28,14 +29,21 @@ jobs:
       - name: Configure git
         run: |
           git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
       - name: Run release script
         run: node scripts/release.mjs
 
-      - name: Push commit and tags
+      - name: Open release PR
         run: |
           VERSION=$(node -p "require('./package.json').version")
-          MAJOR="v$(echo $VERSION | cut -d. -f1)"
-          git push origin main --force-with-lease
-          git push origin "v${VERSION}" "${MAJOR}" --force
+          BRANCH="release/v${VERSION}"
+          git checkout -b "${BRANCH}"
+          git push origin "${BRANCH}"
+          gh pr create \
+            --title "chore: release v${VERSION}" \
+            --body "Automated release PR for v${VERSION}. Merge to publish." \
+            --base main \
+            --head "${BRANCH}"
+        env:
+          GH_TOKEN: ${{ secrets.RELEASE_PAT }}
