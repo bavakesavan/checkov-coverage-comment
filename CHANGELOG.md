@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.2] - 2026-04-17
+
+### Bug Fixes & Improvements
+
+- **ci:** Split release into two stages: `release.yml` opens a PR instead of pushing directly to main; `tag-release.yml` pushes version and floating major tags on merge.
+- **docs:** Update README workflow examples to use `actions/checkout@v6` and add a "scan only PR-changed files" example.
+
 ## [1.2.1] - 2026-04-14
 
 ### Bug Fixes & Improvements
