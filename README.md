@@ -39,7 +39,7 @@ Use the official [checkov-action](https://github.com/bridgecrewio/checkov-action
 
 ```yaml
 - name: Run Checkov
-  uses: bridgecrewio/checkov-action@master
+  uses: bridgecrewio/checkov-action@v3.2.521
   with:
     directory: .
     output_format: json
@@ -51,7 +51,7 @@ Use the official [checkov-action](https://github.com/bridgecrewio/checkov-action
 
 ```yaml
 - name: Post Checkov comment
-  uses: bavakesavan/checkov-coverage-comment@main
+  uses: bavakesavan/checkov-coverage-comment@v1
   with:
     github-token: ${{ secrets.GITHUB_TOKEN }}
 ```
@@ -61,6 +61,8 @@ Use the official [checkov-action](https://github.com/bridgecrewio/checkov-action
 ---
 
 ## Full Workflow Example
+
+### Scan all files
 
 ```yaml
 name: IaC Security Scan
@@ -76,10 +78,10 @@ jobs:
   checkov:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Run Checkov
-        uses: bridgecrewio/checkov-action@master
+        uses: bridgecrewio/checkov-action@v3.2.521
         with:
           directory: .
           output_format: json
@@ -88,7 +90,7 @@ jobs:
 
       - name: Post Checkov comment
         id: checkov_comment
-        uses: bavakesavan/checkov-coverage-comment@main
+        uses: bavakesavan/checkov-coverage-comment@v1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           severities: 'CRITICAL,HIGH,MEDIUM'
@@ -100,6 +102,59 @@ jobs:
           echo "::error::${{ steps.checkov_comment.outputs.critical }} CRITICAL finding(s) found."
           exit 1
 ```
+
+### Scan only files changed in the PR
+
+Useful for large repositories where you want faster feedback and results scoped to what a PR actually touches.
+
+```yaml
+name: IaC Security Scan
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+  pull-requests: write # required to post comments
+
+jobs:
+  checkov:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Get changed files
+        id: changed
+        run: |
+          FILES=$(gh pr diff ${{ github.event.pull_request.number }} --name-only | tr '\n' ',')
+          echo "files=$FILES" >> $GITHUB_OUTPUT
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run Checkov on changed files
+        uses: bridgecrewio/checkov-action@v3.2.521
+        with:
+          file: ${{ steps.changed.outputs.files }}
+          output_format: json
+          output_file_path: results_json.json
+        continue-on-error: true
+
+      - name: Post Checkov comment
+        id: checkov_comment
+        uses: bavakesavan/checkov-coverage-comment@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          severities: 'CRITICAL,HIGH,MEDIUM'
+          soft-fail: false
+
+      - name: Fail on critical findings
+        if: steps.checkov_comment.outputs.critical > 0
+        run: |
+          echo "::error::${{ steps.checkov_comment.outputs.critical }} CRITICAL finding(s) found."
+          exit 1
+```
+
+> **Note:** Checkov's `--file` flag accepts a comma-separated list of paths. The `gh pr diff --name-only` command lists every file touched by the PR, which is joined into that format here.
 
 ---
 
@@ -164,7 +219,7 @@ strategy:
 
 steps:
   - name: Run Checkov for ${{ matrix.workspace }}
-    uses: bridgecrewio/checkov-action@master
+    uses: bridgecrewio/checkov-action@v3.2.521
     with:
       directory: environments/${{ matrix.workspace }}
       output_format: json
@@ -172,7 +227,7 @@ steps:
     continue-on-error: true
 
   - name: Post comment for ${{ matrix.workspace }}
-    uses: bavakesavan/checkov-coverage-comment@main
+    uses: bavakesavan/checkov-coverage-comment@v1
     with:
       github-token: ${{ secrets.GITHUB_TOKEN }}
       checkov-output-path: results_${{ matrix.workspace }}.json
