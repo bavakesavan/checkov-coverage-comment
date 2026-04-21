@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.2.3] - 2026-04-21
+
+### Bug Fixes & Improvements
+
+- **ci:** Create an immutable GitHub Release for each exact version tag.
+
 ## [1.2.2] - 2026-04-17
 
 ### Bug Fixes & Improvements
