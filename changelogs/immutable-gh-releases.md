@@ -1,5 +1,5 @@
 ---
-type: improvement
+type: patch
 scope: ci
 ---
 
