@@ -48,7 +48,7 @@ jobs:
           gh release create "${{ steps.version.outputs.exact }}" \
             --verify-tag \
             --title "${{ steps.version.outputs.exact }}" \
-            --make-latest true \
+            --latest \
             --notes "See [CHANGELOG.md](https://github.com/${{ github.repository }}/blob/main/CHANGELOG.md) for details."
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
