@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.2.4] - 2026-04-23
+
+### Bug Fixes & Improvements
+
+- **ci:** Fix release workflow failing on `gh release create` by replacing the unsupported `--make-latest true` with `--latest`.
+
 ## [1.2.3] - 2026-04-21
 
 ### Bug Fixes & Improvements
