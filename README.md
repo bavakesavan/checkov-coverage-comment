@@ -170,7 +170,7 @@ jobs:
 
 | Input                   | Required | Default                         | Description                                                                                                                                                                            |
 | ----------------------- | -------- | ------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `github-token`          | No       | `${{ github.token }}`           | GitHub token used to post or update the PR comment. The default uses the workflow's implicit token, which is sufficient in most cases.                                                  |
+| `github-token`          | No       | `${{ github.token }}`           | GitHub token used to post or update the PR comment. The default uses the workflow's implicit token, which is sufficient in most cases.                                                 |
 | `checkov-output-path`   | No       | `results_json.json`             | Path to the Checkov JSON output file. Can be relative to `GITHUB_WORKSPACE` or absolute.                                                                                               |
 | `title`                 | No       | `Checkov Security Scan`         | Heading text for the PR comment.                                                                                                                                                       |
 | `severities`            | No       | `CRITICAL,HIGH,MEDIUM,LOW,INFO` | Comma-separated list of severity levels to include in the detailed findings sections. Severities not in this list are still shown in the summary table but have no drill-down section. |
@@ -185,15 +185,15 @@ jobs:
 
 Use these in subsequent steps with `steps.<step-id>.outputs.<name>`:
 
-| Output         | Description                                         |
-| -------------- | --------------------------------------------------- |
-| `critical`     | Number of CRITICAL severity failed checks           |
-| `high`         | Number of HIGH severity failed checks               |
-| `medium`       | Number of MEDIUM severity failed checks             |
-| `low`          | Number of LOW severity failed checks                |
-| `info`         | Number of INFO severity failed checks               |
-| `total-failed` | Total number of failed checks across all severities |
-| `total-passed` | Total number of passed checks                       |
+| Output         | Description                                                                             |
+| -------------- | --------------------------------------------------------------------------------------- |
+| `critical`     | Number of CRITICAL severity failed checks                                               |
+| `high`         | Number of HIGH severity failed checks                                                   |
+| `medium`       | Number of MEDIUM severity failed checks                                                 |
+| `low`          | Number of LOW severity failed checks                                                    |
+| `info`         | Number of INFO severity failed checks                                                   |
+| `total-failed` | Total number of failed checks across all severities                                     |
+| `total-passed` | Total number of passed checks                                                           |
 | `comment-url`  | URL of the posted or updated PR comment. Not set on non-PR runs (job summary fallback). |
 
 ---
