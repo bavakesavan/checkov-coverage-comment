@@ -35,6 +35,15 @@
       "Terraform"
     ]
   },
+  "CKV_ALI_32": {
+    "checkovId": "CKV_ALI_32",
+    "title": "Alibaba Cloud launch template data disks are not encrypted",
+    "severity": "LOW",
+    "subtype": "Build",
+    "frameworks": [
+      "Terraform"
+    ]
+  },
   "CKV_ALI_44": {
     "checkovId": "CKV_ALI_44",
     "title": "Alibaba Cloud MongoDB does not have transparent data encryption enabled",
@@ -227,15 +236,6 @@
   "CKV_ALI_31": {
     "checkovId": "CKV_ALI_31",
     "title": "Alibaba Cloud Kubernetes node pools are not set to auto repair",
-    "severity": "LOW",
-    "subtype": "Build",
-    "frameworks": [
-      "Terraform"
-    ]
-  },
-  "CKV_ALI_32": {
-    "checkovId": "CKV_ALI_32",
-    "title": "Alibaba Cloud launch template data disks are not encrypted",
     "severity": "LOW",
     "subtype": "Build",
     "frameworks": [
@@ -13580,6 +13580,96 @@
       "Git"
     ]
   },
+  "CKV_SECRET_100": {
+    "checkovId": "CKV_SECRET_100",
+    "title": "Checkout.com API Public Key",
+    "severity": "MEDIUM",
+    "subtype": "Build",
+    "frameworks": [
+      "Git"
+    ]
+  },
+  "CKV_SECRET_101": {
+    "checkovId": "CKV_SECRET_101",
+    "title": "Square Access Token",
+    "severity": "MEDIUM",
+    "subtype": "Build",
+    "frameworks": [
+      "Git"
+    ]
+  },
+  "CKV_SECRET_102": {
+    "checkovId": "CKV_SECRET_102",
+    "title": "Square Application Secret",
+    "severity": "MEDIUM",
+    "subtype": "Build",
+    "frameworks": [
+      "Git"
+    ]
+  },
+  "CKV_SECRET_103": {
+    "checkovId": "CKV_SECRET_103",
+    "title": "Typeform Personal Access Token",
+    "severity": "LOW",
+    "subtype": "Build",
+    "frameworks": [
+      "Git"
+    ]
+  },
+  "CKV_SECRET_104": {
+    "checkovId": "CKV_SECRET_104",
+    "title": "Mailgun Domain Sending Key",
+    "severity": "LOW",
+    "subtype": "Build",
+    "frameworks": [
+      "Git"
+    ]
+  },
+  "CKV_SECRET_105": {
+    "checkovId": "CKV_SECRET_105",
+    "title": "Frame IO Token",
+    "severity": "LOW",
+    "subtype": "Build",
+    "frameworks": [
+      "Git"
+    ]
+  },
+  "CKV_SECRET_106": {
+    "checkovId": "CKV_SECRET_106",
+    "title": "Clojars Deploy Token",
+    "severity": "MEDIUM",
+    "subtype": "Build",
+    "frameworks": [
+      "Git"
+    ]
+  },
+  "CKV_SECRET_107": {
+    "checkovId": "CKV_SECRET_107",
+    "title": "OpenAI API Key",
+    "severity": "MEDIUM",
+    "subtype": "Build",
+    "frameworks": [
+      "Git"
+    ]
+  },
+  "CKV_SECRET_108": {
+    "checkovId": "CKV_SECRET_108",
+    "title": "Samsara API Key",
+    "severity": "LOW",
+    "subtype": "Build",
+    "frameworks": [
+      "Git"
+    ]
+  },
+  "CKV_SECRET_109": {
+    "checkovId": "CKV_SECRET_109",
+    "title": "Anthropic API key detected in code",
+    "severity": "MEDIUM",
+    "subtype": "Build",
+    "frameworks": [
+      "Git"
+    ]
+  },
   "CKV_SECRET_11": {
     "checkovId": "CKV_SECRET_11",
     "title": "Mailchimp Access Key",
@@ -13589,9 +13679,72 @@
       "Git"
     ]
   },
+  "CKV_SECRET_110": {
+    "checkovId": "CKV_SECRET_110",
+    "title": "Hugging Face token detected in code",
+    "severity": "MEDIUM",
+    "subtype": "Build",
+    "frameworks": [
+      "Git"
+    ]
+  },
+  "CKV_SECRET_111": {
+    "checkovId": "CKV_SECRET_111",
+    "title": "Microsoft Teams webhook",
+    "severity": "LOW",
+    "subtype": "Build",
+    "frameworks": [
+      "Git"
+    ]
+  },
+  "CKV_SECRET_112": {
+    "checkovId": "CKV_SECRET_112",
+    "title": "Azure Functions HTTP Trigger Key",
+    "severity": "LOW",
+    "subtype": "Build",
+    "frameworks": [
+      "Git"
+    ]
+  },
+  "CKV_SECRET_113": {
+    "checkovId": "CKV_SECRET_113",
+    "title": "MonkeyLearn API Key detected in code",
+    "severity": "MEDIUM",
+    "subtype": "Build",
+    "frameworks": [
+      "Git"
+    ]
+  },
+  "CKV_SECRET_114": {
+    "checkovId": "CKV_SECRET_114",
+    "title": "Clarifai API Key detected in code",
+    "severity": "MEDIUM",
+    "subtype": "Build",
+    "frameworks": [
+      "Git"
+    ]
+  },
+  "CKV_SECRET_115": {
+    "checkovId": "CKV_SECRET_115",
+    "title": "Azure Machine Learning web service API key detected in code",
+    "severity": "MEDIUM",
+    "subtype": "Build",
+    "frameworks": [
+      "Git"
+    ]
+  },
   "CKV_SECRET_12": {
     "checkovId": "CKV_SECRET_12",
     "title": "NPM Token",
+    "severity": "LOW",
+    "subtype": "Build",
+    "frameworks": [
+      "Git"
+    ]
+  },
+  "CKV_SECRET_120": {
+    "checkovId": "CKV_SECRET_120",
+    "title": "Discord Webhook URL detected in code",
     "severity": "LOW",
     "subtype": "Build",
     "frameworks": [
@@ -13616,6 +13769,15 @@
       "Git"
     ]
   },
+  "CKV_SECRET_146": {
+    "checkovId": "CKV_SECRET_146",
+    "title": "reCAPTCHA key detected in code",
+    "severity": "LOW",
+    "subtype": "Build",
+    "frameworks": [
+      "Git"
+    ]
+  },
   "CKV_SECRET_15": {
     "checkovId": "CKV_SECRET_15",
     "title": "SoftLayer Credentials",
@@ -13634,10 +13796,64 @@
       "Git"
     ]
   },
+  "CKV_SECRET_166": {
+    "checkovId": "CKV_SECRET_166",
+    "title": "Stripe Webhook Secret detected in code",
+    "severity": "MEDIUM",
+    "subtype": "Build",
+    "frameworks": [
+      "Git"
+    ]
+  },
+  "CKV_SECRET_168": {
+    "checkovId": "CKV_SECRET_168",
+    "title": "Salesforce Refresh Token detected in code",
+    "severity": "MEDIUM",
+    "subtype": "Build",
+    "frameworks": [
+      "Git"
+    ]
+  },
   "CKV_SECRET_17": {
     "checkovId": "CKV_SECRET_17",
     "title": "Stripe Access Key",
     "severity": "MEDIUM",
+    "subtype": "Build",
+    "frameworks": [
+      "Git"
+    ]
+  },
+  "CKV_SECRET_171": {
+    "checkovId": "CKV_SECRET_171",
+    "title": "Docker Swarm Unlock Key detected in code",
+    "severity": "HIGH",
+    "subtype": "Build",
+    "frameworks": [
+      "Git"
+    ]
+  },
+  "CKV_SECRET_175": {
+    "checkovId": "CKV_SECRET_175",
+    "title": "Zillow Key detected in code",
+    "severity": "LOW",
+    "subtype": "Build",
+    "frameworks": [
+      "Git"
+    ]
+  },
+  "CKV_SECRET_177": {
+    "checkovId": "CKV_SECRET_177",
+    "title": "Google Bard API Key detected in code",
+    "severity": "MEDIUM",
+    "subtype": "Build",
+    "frameworks": [
+      "Git"
+    ]
+  },
+  "CKV_SECRET_178": {
+    "checkovId": "CKV_SECRET_178",
+    "title": "Azure Subscription Key detected in code",
+    "severity": "HIGH",
     "subtype": "Build",
     "frameworks": [
       "Git"
@@ -13652,10 +13868,55 @@
       "Git"
     ]
   },
+  "CKV_SECRET_180": {
+    "checkovId": "CKV_SECRET_180",
+    "title": "Okta Keys Client Secret detected in code",
+    "severity": "HIGH",
+    "subtype": "Build",
+    "frameworks": [
+      "Git"
+    ]
+  },
+  "CKV_SECRET_184": {
+    "checkovId": "CKV_SECRET_184",
+    "title": "Yahoo OAuth2 Keys detected in code",
+    "severity": "MEDIUM",
+    "subtype": "build",
+    "frameworks": [
+      "Git"
+    ]
+  },
+  "CKV_SECRET_185": {
+    "checkovId": "CKV_SECRET_185",
+    "title": "Eventbrite Oauth2 Keys detected in code",
+    "severity": "LOW",
+    "subtype": "build",
+    "frameworks": [
+      "Git"
+    ]
+  },
   "CKV_SECRET_19": {
     "checkovId": "CKV_SECRET_19",
     "title": "Hex High Entropy String",
     "severity": "LOW",
+    "subtype": "Build",
+    "frameworks": [
+      "Git"
+    ]
+  },
+  "CKV_SECRET_191": {
+    "checkovId": "CKV_SECRET_191",
+    "title": "Octopus Deploy API key detected in code",
+    "severity": "MEDIUM",
+    "subtype": "Build",
+    "frameworks": [
+      "Git"
+    ]
+  },
+  "CKV_SECRET_192": {
+    "checkovId": "CKV_SECRET_192",
+    "title": "Bearer token detected in code",
+    "severity": "MEDIUM",
     "subtype": "Build",
     "frameworks": [
       "Git"
@@ -13688,6 +13949,33 @@
       "Git"
     ]
   },
+  "CKV_SECRET_220": {
+    "checkovId": "CKV_SECRET_220",
+    "title": "Grafana service account token detected in code",
+    "severity": "MEDIUM",
+    "subtype": "build",
+    "frameworks": [
+      "Git"
+    ]
+  },
+  "CKV_SECRET_223": {
+    "checkovId": "CKV_SECRET_223",
+    "title": "SSH Password detected in code",
+    "severity": "MEDIUM",
+    "subtype": "build",
+    "frameworks": [
+      "Git"
+    ]
+  },
+  "CKV_SECRET_226": {
+    "checkovId": "CKV_SECRET_226",
+    "title": "Slack bot token detected in code",
+    "severity": "LOW",
+    "subtype": "build",
+    "frameworks": [
+      "Git"
+    ]
+  },
   "CKV_SECRET_23": {
     "checkovId": "CKV_SECRET_23",
     "title": "Alibaba Cloud Keys",
@@ -13706,11 +13994,65 @@
       "Git"
     ]
   },
+  "CKV_SECRET_240": {
+    "checkovId": "CKV_SECRET_240",
+    "title": "New Relic APM license key detected in code",
+    "severity": "MEDIUM",
+    "subtype": "build",
+    "frameworks": [
+      "Git"
+    ]
+  },
+  "CKV_SECRET_242": {
+    "checkovId": "CKV_SECRET_242",
+    "title": "Plaid access token detected in code",
+    "severity": "MEDIUM",
+    "subtype": "build",
+    "frameworks": [
+      "Git"
+    ]
+  },
+  "CKV_SECRET_244": {
+    "checkovId": "CKV_SECRET_244",
+    "title": "Replicate user access token detected in code",
+    "severity": "MEDIUM",
+    "subtype": "build",
+    "frameworks": [
+      "Git"
+    ]
+  },
+  "CKV_SECRET_248": {
+    "checkovId": "CKV_SECRET_248",
+    "title": "Sourcegraph access token detected in code",
+    "severity": "MEDIUM",
+    "subtype": "build",
+    "frameworks": [
+      "Git"
+    ]
+  },
   "CKV_SECRET_25": {
     "checkovId": "CKV_SECRET_25",
     "title": "Atlassian Oauth2 Keys",
     "severity": "LOW",
     "subtype": "Build",
+    "frameworks": [
+      "Git"
+    ]
+  },
+  "CKV_SECRET_254": {
+    "checkovId": "CKV_SECRET_254",
+    "title": "Zapier webhook url detected in code",
+    "severity": "MEDIUM",
+    "subtype": "build",
+    "frameworks": [
+      "Git"
+    ]
+  },
+  "CKV_SECRET_256": {
+    "checkovId": "CKV_SECRET_256",
+    "title": "Rails Master Key detected in code",
+    "severity": "MEDIUM",
+    "subtype": "build",
     "frameworks": [
       "Git"
     ]
@@ -14219,6 +14561,24 @@
       "Git"
     ]
   },
+  "CKV_SECRET_77": {
+    "checkovId": "CKV_SECRET_77",
+    "title": "MongoDB Connection String",
+    "severity": "LOW",
+    "subtype": "Build",
+    "frameworks": [
+      "Git"
+    ]
+  },
+  "CKV_SECRET_78": {
+    "checkovId": "CKV_SECRET_78",
+    "title": "Braintree Access Token",
+    "severity": "MEDIUM",
+    "subtype": "Build",
+    "frameworks": [
+      "Git"
+    ]
+  },
   "CKV_SECRET_79": {
     "checkovId": "CKV_SECRET_79",
     "title": "GCP Service Account Auth Key",
@@ -14237,10 +14597,190 @@
       "Git"
     ]
   },
+  "CKV_SECRET_80": {
+    "checkovId": "CKV_SECRET_80",
+    "title": "Random High Entropy String",
+    "severity": "LOW",
+    "subtype": "Build",
+    "frameworks": [
+      "Git"
+    ]
+  },
+  "CKV_SECRET_81": {
+    "checkovId": "CKV_SECRET_81",
+    "title": "Braintree Payments Key",
+    "severity": "MEDIUM",
+    "subtype": "Build",
+    "frameworks": [
+      "Git"
+    ]
+  },
+  "CKV_SECRET_82": {
+    "checkovId": "CKV_SECRET_82",
+    "title": "AWS MWS Auth Token",
+    "severity": "MEDIUM",
+    "subtype": "Build",
+    "frameworks": [
+      "Git"
+    ]
+  },
+  "CKV_SECRET_83": {
+    "checkovId": "CKV_SECRET_83",
+    "title": "Paypal Token ID",
+    "severity": "MEDIUM",
+    "subtype": "Build",
+    "frameworks": [
+      "Git"
+    ]
+  },
+  "CKV_SECRET_84": {
+    "checkovId": "CKV_SECRET_84",
+    "title": "Paypal Token Key",
+    "severity": "MEDIUM",
+    "subtype": "Build",
+    "frameworks": [
+      "Git"
+    ]
+  },
+  "CKV_SECRET_85": {
+    "checkovId": "CKV_SECRET_85",
+    "title": "Braintree Payments ID",
+    "severity": "MEDIUM",
+    "subtype": "Build",
+    "frameworks": [
+      "Git"
+    ]
+  },
+  "CKV_SECRET_86": {
+    "checkovId": "CKV_SECRET_86",
+    "title": "SonarQube Token",
+    "severity": "LOW",
+    "subtype": "Build",
+    "frameworks": [
+      "Git"
+    ]
+  },
+  "CKV_SECRET_87": {
+    "checkovId": "CKV_SECRET_87",
+    "title": "SendGrid Key",
+    "severity": "LOW",
+    "subtype": "Build",
+    "frameworks": [
+      "Git"
+    ]
+  },
+  "CKV_SECRET_88": {
+    "checkovId": "CKV_SECRET_88",
+    "title": "Firebase Cloud Messaging API key",
+    "severity": "LOW",
+    "subtype": "Build",
+    "frameworks": [
+      "Git"
+    ]
+  },
+  "CKV_SECRET_89": {
+    "checkovId": "CKV_SECRET_89",
+    "title": "Docker Swarm Join Token",
+    "severity": "MEDIUM",
+    "subtype": "Build",
+    "frameworks": [
+      "Git"
+    ]
+  },
   "CKV_SECRET_9": {
     "checkovId": "CKV_SECRET_9",
     "title": "JSON Web Token",
     "severity": "LOW",
+    "subtype": "Build",
+    "frameworks": [
+      "Git"
+    ]
+  },
+  "CKV_SECRET_90": {
+    "checkovId": "CKV_SECRET_90",
+    "title": "Shopify Generic App Token",
+    "severity": "MEDIUM",
+    "subtype": "Build",
+    "frameworks": [
+      "Git"
+    ]
+  },
+  "CKV_SECRET_91": {
+    "checkovId": "CKV_SECRET_91",
+    "title": "Mapbox Token",
+    "severity": "LOW",
+    "subtype": "Build",
+    "frameworks": [
+      "Git"
+    ]
+  },
+  "CKV_SECRET_92": {
+    "checkovId": "CKV_SECRET_92",
+    "title": "PubNub Subscription Key",
+    "severity": "LOW",
+    "subtype": "Build",
+    "frameworks": [
+      "Git"
+    ]
+  },
+  "CKV_SECRET_93": {
+    "checkovId": "CKV_SECRET_93",
+    "title": "PubNub Publish Key",
+    "severity": "LOW",
+    "subtype": "Build",
+    "frameworks": [
+      "Git"
+    ]
+  },
+  "CKV_SECRET_94": {
+    "checkovId": "CKV_SECRET_94",
+    "title": "Mailgun Primary Account API Key",
+    "severity": "LOW",
+    "subtype": "Build",
+    "frameworks": [
+      "Git"
+    ]
+  },
+  "CKV_SECRET_95": {
+    "checkovId": "CKV_SECRET_95",
+    "title": "SendinBlue Key",
+    "severity": "LOW",
+    "subtype": "Build",
+    "frameworks": [
+      "Git"
+    ]
+  },
+  "CKV_SECRET_96": {
+    "checkovId": "CKV_SECRET_96",
+    "title": "Crates API Token",
+    "severity": "MEDIUM",
+    "subtype": "Build",
+    "frameworks": [
+      "Git"
+    ]
+  },
+  "CKV_SECRET_97": {
+    "checkovId": "CKV_SECRET_97",
+    "title": "Shopify Private App Token",
+    "severity": "MEDIUM",
+    "subtype": "Build",
+    "frameworks": [
+      "Git"
+    ]
+  },
+  "CKV_SECRET_98": {
+    "checkovId": "CKV_SECRET_98",
+    "title": "Flutterwave API Key",
+    "severity": "MEDIUM",
+    "subtype": "Build",
+    "frameworks": [
+      "Git"
+    ]
+  },
+  "CKV_SECRET_99": {
+    "checkovId": "CKV_SECRET_99",
+    "title": "NuGet API Key",
+    "severity": "MEDIUM",
     "subtype": "Build",
     "frameworks": [
       "Git"
