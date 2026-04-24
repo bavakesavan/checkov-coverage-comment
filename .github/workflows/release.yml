@@ -1,4 +1,4 @@
-name: Release new version
+name: Release
 
 on:
   workflow_dispatch:
@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   release:
-    name: Build & Release PR
+    name: Create release PR
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6

@@ -54,21 +54,18 @@ export function readCheckovFile(filePath: string): CheckovOutput {
   if (!raw) {
     throw new Error(`Checkov output file is empty: ${filePath}`);
   }
+  let firstError: Error;
   try {
     return JSON.parse(raw) as CheckovOutput;
+  } catch (err) {
+    firstError = err as Error;
+  }
+  try {
+    const objects = splitJsonObjects(raw);
+    if (objects.length === 0) throw new Error('no JSON objects found');
+    return objects as CheckovOutput;
   } catch {
-    // checkov-action may write multiple JSON objects back-to-back (one per
-    // framework) rather than a valid JSON array. Try splitting on object
-    // boundaries and parsing each chunk individually.
-    try {
-      const objects = splitJsonObjects(raw);
-      if (objects.length === 0) {
-        throw new Error();
-      }
-      return objects as CheckovOutput;
-    } catch {
-      throw new Error(`failed to parse checkov JSON output from: ${filePath}`);
-    }
+    throw new Error(`Failed to parse Checkov JSON from "${filePath}": ${firstError.message}`);
   }
 }
 
@@ -93,7 +90,7 @@ export function groupBySeverity(failed: CheckRecord[]): Map<Severity | 'UNKNOWN'
     bucket.push(check);
     map.set(key, bucket);
   }
-  // Remove empty buckets for cleaner iteration
+  // Remove empty buckets for clean iteration
   for (const [key, bucket] of map.entries()) {
     if (bucket.length === 0) {
       map.delete(key);
