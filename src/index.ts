@@ -6,7 +6,15 @@ import { buildComment } from './format';
 import { upsertComment, getPrNumber } from './github';
 import type { FormatOptions, Severity } from './types';
 
-async function run(): Promise<void> {
+export async function run(): Promise<void> {
+  try {
+    await _run();
+  } catch (err) {
+    core.setFailed((err as Error).message);
+  }
+}
+
+async function _run(): Promise<void> {
   const token = core.getInput('github-token', { required: true });
   core.setSecret(token);
   const rawPath = core.getInput('checkov-output-path') || 'results_json.json';
@@ -87,6 +95,4 @@ async function run(): Promise<void> {
   }
 }
 
-run().catch((err) => {
-  core.setFailed((err as Error).message);
-});
+run();

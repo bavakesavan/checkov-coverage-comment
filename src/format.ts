@@ -31,7 +31,7 @@ const SEVERITY_ORDER: Array<Severity | 'UNKNOWN'> = [
 ];
 
 function escapeMarkdown(text: string): string {
-  return text.replace(/\|/g, '\\|');
+  return text.replace(/[|*_`[\]]/g, '\\$&');
 }
 
 function buildSeverityTable(data: ParsedResult): string {

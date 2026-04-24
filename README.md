@@ -4,16 +4,26 @@ A GitHub Action that parses [Checkov](https://www.checkov.io/) IaC scan results 
 
 ---
 
+## Table of Contents
+
+- [What is Checkov?](#what-is-checkov)
+- [Why use this Action?](#why-use-this-action)
+- [Quick Start](#quick-start)
+- [Full Workflow Example](#full-workflow-example)
+- [Configuration](#configuration)
+  - [Inputs](#inputs)
+  - [Outputs](#outputs)
+- [Comment Format](#comment-format)
+- [Matrix Build Example](#matrix-build-example)
+- [Permissions](#permissions)
+- [Contributing](#contributing)
+- [License](#license)
+
+---
+
 ## What is Checkov?
 
-[Checkov](https://www.checkov.io/) is an open-source static analysis tool for Infrastructure-as-Code (IaC). It scans Terraform, CloudFormation, Kubernetes, Dockerfiles, ARM templates, and more for security misconfigurations before they reach production.
-
-Checkov checks against hundreds of built-in policies covering:
-
-- **Cloud security** — S3 bucket exposure, unrestricted security groups, unencrypted storage, public IAM policies
-- **Compliance** — CIS Benchmarks, SOC 2, PCI-DSS, HIPAA, NIST controls
-- **Secrets detection** — hardcoded credentials and API keys
-- **Supply chain** — pinned versions, signed images, integrity checks
+[Checkov](https://www.checkov.io/) is an open-source static analysis tool for Infrastructure-as-Code (IaC). It scans Terraform, CloudFormation, Kubernetes, Dockerfiles, ARM templates, and more for security misconfigurations — checking against hundreds of policies covering cloud security, compliance frameworks (CIS, SOC 2, PCI-DSS), secrets detection, and supply chain integrity.
 
 ---
 
@@ -52,8 +62,6 @@ Use the official [checkov-action](https://github.com/bridgecrewio/checkov-action
 ```yaml
 - name: Post Checkov comment
   uses: bavakesavan/checkov-coverage-comment@v1
-  with:
-    github-token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 > The action auto-detects the PR number from the workflow context. On non-PR triggers (e.g. `workflow_dispatch`) it falls back to writing results to the [Job Summary](https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/adding-a-job-summary).
@@ -92,7 +100,6 @@ jobs:
         id: checkov_comment
         uses: bavakesavan/checkov-coverage-comment@v1
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
           severities: 'CRITICAL,HIGH,MEDIUM'
           soft-fail: false
 
@@ -143,7 +150,6 @@ jobs:
         id: checkov_comment
         uses: bavakesavan/checkov-coverage-comment@v1
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
           severities: 'CRITICAL,HIGH,MEDIUM'
           soft-fail: false
 
@@ -164,7 +170,7 @@ jobs:
 
 | Input                   | Required | Default                         | Description                                                                                                                                                                            |
 | ----------------------- | -------- | ------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `github-token`          | Yes      | —                               | GitHub token used to post or update the PR comment. Use `${{ secrets.GITHUB_TOKEN }}`.                                                                                                 |
+| `github-token`          | No       | `${{ github.token }}`           | GitHub token used to post or update the PR comment. The default uses the workflow's implicit token, which is sufficient in most cases.                                                 |
 | `checkov-output-path`   | No       | `results_json.json`             | Path to the Checkov JSON output file. Can be relative to `GITHUB_WORKSPACE` or absolute.                                                                                               |
 | `title`                 | No       | `Checkov Security Scan`         | Heading text for the PR comment.                                                                                                                                                       |
 | `severities`            | No       | `CRITICAL,HIGH,MEDIUM,LOW,INFO` | Comma-separated list of severity levels to include in the detailed findings sections. Severities not in this list are still shown in the summary table but have no drill-down section. |
@@ -179,16 +185,16 @@ jobs:
 
 Use these in subsequent steps with `steps.<step-id>.outputs.<name>`:
 
-| Output         | Description                                         |
-| -------------- | --------------------------------------------------- |
-| `critical`     | Number of CRITICAL severity failed checks           |
-| `high`         | Number of HIGH severity failed checks               |
-| `medium`       | Number of MEDIUM severity failed checks             |
-| `low`          | Number of LOW severity failed checks                |
-| `info`         | Number of INFO severity failed checks               |
-| `total-failed` | Total number of failed checks across all severities |
-| `total-passed` | Total number of passed checks                       |
-| `comment-url`  | URL of the posted or updated PR comment             |
+| Output         | Description                                                                             |
+| -------------- | --------------------------------------------------------------------------------------- |
+| `critical`     | Number of CRITICAL severity failed checks                                               |
+| `high`         | Number of HIGH severity failed checks                                                   |
+| `medium`       | Number of MEDIUM severity failed checks                                                 |
+| `low`          | Number of LOW severity failed checks                                                    |
+| `info`         | Number of INFO severity failed checks                                                   |
+| `total-failed` | Total number of failed checks across all severities                                     |
+| `total-passed` | Total number of passed checks                                                           |
+| `comment-url`  | URL of the posted or updated PR comment. Not set on non-PR runs (job summary fallback). |
 
 ---
 
@@ -204,7 +210,7 @@ The posted comment includes:
   - Affected resource
   - File path and line range
 
-If the total comment length would exceed GitHub's 65,536-character limit, lower-priority severity sections are dropped and a truncation notice is added.
+If the total comment length would exceed GitHub's 65,536-character limit, lower-priority severity sections are dropped from the detailed report (INFO first, then LOW, MEDIUM, and so on) and a truncation notice is added. The summary table is always preserved.
 
 ---
 
@@ -229,7 +235,6 @@ steps:
   - name: Post comment for ${{ matrix.workspace }}
     uses: bavakesavan/checkov-coverage-comment@v1
     with:
-      github-token: ${{ secrets.GITHUB_TOKEN }}
       checkov-output-path: results_${{ matrix.workspace }}.json
       title: 'Checkov — ${{ matrix.workspace }}'
       unique-id-for-comment: ${{ matrix.workspace }}

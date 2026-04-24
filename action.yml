@@ -33,7 +33,9 @@ inputs:
     default: 'false'
 
   severities:
-    description: 'Comma-separated list of severity levels to include in the comment (CRITICAL,HIGH,MEDIUM,LOW,INFO)'
+    description: >-
+      Comma-separated list of severity levels to show in the drill-down sections (CRITICAL,HIGH,MEDIUM,LOW,INFO).
+      Severities not in this list are still counted in the summary table but have no detailed findings section.
     required: false
     default: 'CRITICAL,HIGH,MEDIUM,LOW,INFO'
 
