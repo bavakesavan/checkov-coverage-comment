@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.3.0] - 2026-04-24
+
+### New Features
+
+- **policies:** Automatically refresh `data/policies.json` from the upstream prisma-cloud-docs repo on every release, ensuring policy metadata stays current without manual updates. Also fixed the policy extractor to capture 60 previously missed policies that used the `Checkov Check ID` field label variant (primarily secrets and Alibaba policies).
+
+### Bug Fixes & Improvements
+
+- **action:** Fix markdown escaping in PR comment tables to handle `*`, `_`, `` ` ``, `[`, and `]` in addition to `|`, preventing rendering corruption when check names or resource identifiers contain these characters.
+- **parser:** Preserve the original `SyntaxError` message when Checkov JSON parsing fails, so the error reported to the user includes the specific parse failure reason rather than a generic message.
+- **tests:** Add test coverage for `github.ts` (comment upsert, pagination, PR number detection), `index.ts` (severity filtering, soft-fail logic, outputs, error handling), and `severity.ts` (policy lookup). Also expand `format.test.ts` with escapeMarkdown and comment truncation tests.
+
 ## [1.2.4] - 2026-04-23
 
 ### Bug Fixes & Improvements
